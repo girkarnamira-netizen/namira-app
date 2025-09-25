@@ -124,7 +124,7 @@ text_strings = {
         "faq_4_q": "'ஆன்லைன்' மற்றும் 'ஆஃப்லைன்' வேலை முறைகளுக்கு என்ன வித்தியாசம்?",
         "faq_4_a": "**'ஆன்லைன்'** என்பதைத் தேர்ந்தெடுப்பது, **'ரிமோட்'** இருப்பிடத்துடன் இன்டர்ன்ஷிப்களை உங்களுக்குக் காண்பிக்கும். **'ஆஃப்லைன்'** என்பதைத் தேர்ந்தெடுப்பது, **'ஆன்-சைட்'** அல்லது **'ஹைப்ரிட்'** இருப்பிடத்துடன் இன்டர்ன்ஷிப்களை உங்களுக்குக் காண்பிக்கும்.",
         "faq_5_q": "உதவித்தொகை எவ்வாறு கணக்கிடப்படுகிறது?",
-        "faq_5_a": "ஒவ்வொரு இன்டர்ன்ஷிப்பிற்கும் காட்டப்படும் உதவித்தொகை, தரவுத்தொகுப்பில் குறிப்பிடப்பட்ட ஒரு நிலையான தொகையாகும். பக்கப்பட்டியில் உள்ள **'குறைந்தபட்ச உதவித்தொகை'** ஸ்லைடர், நீங்கள் தேர்ந்தெடுத்த தொகைக்கு சமமான அல்லது அதற்கு அதிகமாக உள்ள இன்டர்ன்ஷிப்களை மட்டுமே வடிகட்டுகிறது.",
+        "faq_5_a": "ஒவ்வொரு இன்டர்ன்ஷிப்பிற்கும் காட்டப்படும் உதவித்தொகை, தரவுத்தொகுப்பில் குறிப்பிடப்பட்ட ஒரு நிலையான தொகையாகும். பக்கப்பட்டியில் உள்ள **'குறைந்தபட்ச உதவித்தொகை'** ஸ்லைடர், நீங்கள் தேர்ந்தெடுத்த தொகைக்கு சமமான அல்லது அதற்கு அதிகமாக உள்ள இன்டர்ன்ஷிப்களை மட்டுமே வடிகட்டுகிறது।",
         "footer": "InternMate - Girkar Namira Siddique அவர்களால் உருவாக்கப்பட்டது"
     }
 }
@@ -256,29 +256,28 @@ footer {
 # --- Data Loading ---
 @st.cache_data
 def load_internships():
-    # डेटा में पीएम इंटर्नशिप शामिल है
     data = {
         'company': [
             'Tech Innovators Inc.', 'Data Wizards Ltd.', 'Creative Solutions Co.',
             'Global Marketing Agency', 'AI Driven Insights', 'Quantum Tech',
             'Financial Futures', 'Health Tech Solutions', 'Sustainable Energy Co.',
-            'GameDev Studio', 'Product Pulse Co.'
+            'GameDev Studio', 'Product Pulse Co.', 'PM Solutions Hub'
         ],
         'role': [
             'Software Engineer Intern', 'Data Analyst Intern', 'UI/UX Design Intern',
             'Digital Marketing Intern', 'Machine Learning Intern', 'Cloud Computing Intern',
             'Financial Analyst Intern', 'Healthcare Data Intern', 'Environmental Analyst Intern',
-            'Game Developer Intern', 'Product Management Intern'
+            'Game Developer Intern', 'Product Management Intern', 'PM Intern'
         ],
         'location': [
             'Remote', 'On-site (Mumbai)', 'Hybrid (Delhi)', 'Remote',
             'On-site (Bangalore)', 'Remote', 'Hybrid (Chennai)',
-            'On-site (Pune)', 'Remote', 'Hybrid (Hyderabad)', 'On-site (Mumbai)'
+            'On-site (Pune)', 'Remote', 'Hybrid (Hyderabad)', 'On-site (Mumbai)', 'On-site (Delhi)'
         ],
         'stipend': [
             '₹15,000', '₹20,000', '₹12,000', '₹10,000',
             '₹25,000', '₹18,000', '₹16,000', '₹22,000',
-            '₹14,000', '₹17,000', '₹21,000'
+            '₹14,000', '₹17,000', '₹21,000', '₹20,000'
         ],
         'description': [
             'Developing web applications using Python and React.',
@@ -291,7 +290,8 @@ def load_internships():
             'Processing and analyzing patient data for insights.',
             'Researching and analyzing data for renewable energy projects.',
             'Developing game mechanics and level design using Unity.',
-            'Assisting with product roadmaps, market research, and feature ideation.'
+            'Assisting with product roadmaps, market research, and feature ideation.',
+            'A hands-on role in a PM team, assisting with product strategy and launch.'
         ],
         'skills': [
             'Python, React, JavaScript, Git', 'Python, Pandas, SQL, Visualization',
@@ -299,7 +299,7 @@ def load_internships():
             'Python, TensorFlow, Scikit-learn, NLP', 'AWS, Azure, Docker, Kubernetes',
             'Excel, Financial Modeling, Data Analysis', 'SQL, Python, Data Cleaning, Statistics',
             'Python, GIS, R, Data Analysis', 'Unity, C#, Game Design, 3D Modeling',
-            'Product Management, Market Research, Agile, JIRA'
+            'Product Management, Market Research, Agile, JIRA', 'Product Strategy, Agile, Scrum, Market Analysis'
         ]
     }
     return pd.DataFrame(data)
