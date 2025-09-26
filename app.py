@@ -305,11 +305,19 @@ st.sidebar.markdown(text_strings[st.session_state.lang]['sidebar_tagline'])
 
 # 1. Language selection (Updates st.session_state.lang and forces rerun)
 language_options = {'English': 'en', 'हिंदी': 'hi', 'मराठी': 'mr', 'தமிழ்': 'ta'}
-selected_language_name = st.sidebar.selectbox(text_strings[st.session_state.lang]['select_language'], options=list(language_options.keys()), index=list(language_options.keys()).index(list(language_options.keys())[list(language_options.values()).index(st.session_state.lang)]))
+# Use a key to store the selected language name to prevent the ValueError
+selected_language_name = st.sidebar.selectbox(
+    text_strings[st.session_state.lang]['select_language'], 
+    options=list(language_options.keys()), 
+    index=list(language_options.keys()).index(
+        list(language_options.keys())[list(language_options.values()).index(st.session_state.lang)]
+    )
+)
 
+# Fix: Check if the selection causes a language change and force rerun
 if language_options[selected_language_name] != st.session_state.lang:
     st.session_state.lang = language_options[selected_language_name]
-    st.experimental_rerun() # Forces the entire script to rerun with new language settings
+    st.experimental_rerun() 
 
 # Now define all UI elements using the current language state (st.session_state.lang)
 
