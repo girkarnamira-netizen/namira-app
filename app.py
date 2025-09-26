@@ -80,6 +80,16 @@ text_strings = {
     }
 }
 
+# --- Callback Function for Language Change ---
+def update_language():
+    """Updates the session state language and forces a rerun."""
+    # The new language name is stored in the key 'language_select_key'
+    selected_name = st.session_state['language_select_key']
+    language_options_map = {'English': 'en', 'हिंदी': 'hi', 'मराठी': 'mr', 'தமிழ்': 'ta'}
+    st.session_state.lang = language_options_map.get(selected_name, 'en')
+    # Use st.rerun instead of st.experimental_rerun for modern Streamlit versions
+    st.rerun()
+
 # --- Data Loading ---
 @st.cache_data
 def load_internships():
@@ -303,23 +313,19 @@ footer { text-align: center; margin-top: 50px; padding: 10px; font-size: 0.85rem
 st.sidebar.title(text_strings[st.session_state.lang]['sidebar_title'])
 st.sidebar.markdown(text_strings[st.session_state.lang]['sidebar_tagline'])
 
-# 1. Language selection (Updates st.session_state.lang and forces rerun)
+# 1. Language selection (Updates st.session_state.lang using callback)
 language_options = {'English': 'en', 'हिंदी': 'hi', 'मराठी': 'mr', 'தமிழ்': 'ta'}
-# Use a key to store the selected language name to prevent the ValueError
-selected_language_name = st.sidebar.selectbox(
-    text_strings[st.session_state.lang]['select_language'], 
-    options=list(language_options.keys()), 
-    index=list(language_options.keys()).index(
-        list(language_options.keys())[list(language_options.values()).index(st.session_state.lang)]
-    )
+current_index = list(language_options.keys()).index(
+    list(language_options.keys())[list(language_options.values()).index(st.session_state.lang)]
 )
 
-# Fix: Check if the selection causes a language change and force rerun
-if language_options[selected_language_name] != st.session_state.lang:
-    st.session_state.lang = language_options[selected_language_name]
-    st.experimental_rerun() 
-
-# Now define all UI elements using the current language state (st.session_state.lang)
+st.sidebar.selectbox(
+    text_strings[st.session_state.lang]['select_language'], 
+    options=list(language_options.keys()), 
+    index=current_index,
+    key='language_select_key', # Key used to store the selection
+    on_change=update_language # Callback function to handle update and rerun
+)
 
 # 2. Location Filter
 all_locations = sorted(list(set([loc.split('(')[0].strip() for loc in df['location'] if loc != 'Remote'])))
